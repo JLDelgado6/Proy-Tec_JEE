@@ -1,10 +1,31 @@
 package model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table
 public class Vehiculo {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
 	private Long idVeh;
+	
+	@Column
 	private String marcaVeh;
+	
+	@Column
 	private String modeloVeh;
+	
+	@Column
 	private Integer precioVeh;
+	
+	
 	public Vehiculo() {
 	}
 	public Long getIdVeh() {
