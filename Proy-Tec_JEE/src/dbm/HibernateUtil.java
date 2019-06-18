@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import model.Vehiculo;
 
+
 public class HibernateUtil {
 
 	private static SessionFactory sessionFactory;
