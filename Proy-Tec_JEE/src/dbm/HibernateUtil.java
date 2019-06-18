@@ -3,8 +3,7 @@ package dbm;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
-import model.Persona;
+import model.Vehiculo;
 
 public class HibernateUtil {
 
@@ -14,7 +13,7 @@ public class HibernateUtil {
 	private static void buildSessionFactory() {
 		try {
 			sessionFactory = new Configuration()
-					.addAnnotatedClass(Persona.class)
+					.addAnnotatedClass(Vehiculo.class)
 					.configure()
 					.buildSessionFactory();
 		} catch (Exception e) {
