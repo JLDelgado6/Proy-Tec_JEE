@@ -1,5 +1,7 @@
 package logic;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.hibernate.Session;
 
 import dbm.HibernateUtil;
@@ -11,13 +13,16 @@ public class Delete {
 
 		Session session = HibernateUtil.getSession();
 		Vehiculo v = session.get(Vehiculo.class, ind);
+		try {
+			session.beginTransaction();
+			session.delete(v);
+			session.getTransaction().commit();
 
-		session.beginTransaction();
-		session.delete(v);
-		session.getTransaction().commit();
+			session.close();
 
-		session.close();
-
-		System.out.println("Vehiculo eliminado con éxito: " + v);
+			System.out.println("Vehiculo eliminado con éxito: " + v);
+		} catch (Exception e) {
+			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+		}
 	}
 }

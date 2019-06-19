@@ -1,5 +1,7 @@
 package logic;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.hibernate.Session;
 
 import dbm.HibernateUtil;
@@ -13,13 +15,16 @@ public class Post {
 		v.setPrecioVeh(7600);
 
 		Session session = HibernateUtil.getSession();
+		if (v.getPrecioVeh() >= 0) {
+			session.beginTransaction();
+			session.save(v);
+			session.getTransaction().commit();
 
-		session.beginTransaction();
-		session.save(v);
-		session.getTransaction().commit();
+			session.close();
 
-		session.close();
-
-		System.out.println("Vehiculo insertado con éxito: " + v);
+			System.out.println("Vehiculo insertado con éxito: " + v);
+		} else {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+		}
 	}
 }
