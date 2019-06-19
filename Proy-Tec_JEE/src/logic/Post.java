@@ -6,18 +6,20 @@ import dbm.HibernateUtil;
 import model.Vehiculo;
 
 public class Post {
-	Vehiculo v = new Vehiculo();
-	v.setMarca("Fiat);
-	v.setModelo("Panda");
-	v.setPrecio(7600);
+	public static void addVehiculo() {
+		Vehiculo v = new Vehiculo();
+		v.setMarcaVeh("Fiat");
+		v.setModeloVeh("Panda");
+		v.setPrecioVeh(7600);
 
-	Session session = HibernateUtil.getSession();
+		Session session = HibernateUtil.getSession();
 
-	session.beginTransaction();
-	session.save(v);
-	session.getTransaction().commit();
+		session.beginTransaction();
+		session.save(v);
+		session.getTransaction().commit();
 
-	session.close();
+		session.close();
 
-	System.out.println("Vehiculo insertado con éxito: " + v);
+		System.out.println("Vehiculo insertado con éxito: " + v);
+	}
 }

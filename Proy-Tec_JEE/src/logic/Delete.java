@@ -6,17 +6,18 @@ import dbm.HibernateUtil;
 import model.Vehiculo;
 
 public class Delete {
-	Long ind = 1L;
-	
-	Session session = HibernateUtil.getSession();
-	Vehiculo v = session.get(Vehiculo.class, ind);
+	public static void delVehiculo() {
+		Long ind = 1L;
 
-	session.beginTransaction();
-	session.delete(v);
-	session.getTransaction().commit();
-	
-	session.close();
+		Session session = HibernateUtil.getSession();
+		Vehiculo v = session.get(Vehiculo.class, ind);
 
-	System.out.println("Vehiculo eliminado con éxito: " + v);
+		session.beginTransaction();
+		session.delete(v);
+		session.getTransaction().commit();
 
+		session.close();
+
+		System.out.println("Vehiculo eliminado con éxito: " + v);
+	}
 }
