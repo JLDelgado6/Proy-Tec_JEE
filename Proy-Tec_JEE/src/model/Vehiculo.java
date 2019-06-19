@@ -17,13 +17,13 @@ public class Vehiculo {
 	private Long idVeh;
 	
 	@Column
-	private String marcaVeh;
+	private String marcaVeh ="";
 	
 	@Column
-	private String modeloVeh;
+	private String modeloVeh ="";
 	
 	@Column
-	private Integer precioVeh;
+	private Integer precioVeh =0;
 	
 	
 	public Vehiculo() {
