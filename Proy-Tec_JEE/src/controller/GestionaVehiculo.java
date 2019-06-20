@@ -7,6 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import logic.Delete;
+import logic.Get;
+import logic.Post;
+import logic.Put;
+
+
 
 @WebServlet("/GestionaVehiculo")
 public class GestionaVehiculo extends HttpServlet {
@@ -17,19 +23,19 @@ public class GestionaVehiculo extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append(GestionLista.getVehiculo(request).toString());
+		response.getWriter().append(Get.getVehiculo(request).toString());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		GestionLista.addVehiculo(request);
+		Post.addVehiculo(request);
 	}
 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		GestionLista.edtVehiculo(request);
+		Put.edtVehiculo(request);
 	}
 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		GestionLista.Vehiculo(request);
+		Delete.delVehiculo(request);
 	}
 
 }

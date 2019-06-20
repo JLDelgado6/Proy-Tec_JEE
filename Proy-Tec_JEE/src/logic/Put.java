@@ -1,6 +1,7 @@
 package logic;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.Session;
 
@@ -9,7 +10,7 @@ import model.Vehiculo;
 import controller.GestionaVehiculo;
 
 public class Put {
-	public static void edtVehiculo() {
+	public static void edtVehiculo(HttpServletRequest request) {
 		Long ind = 1L;
 
 		Session session = HibernateUtil.getSession();

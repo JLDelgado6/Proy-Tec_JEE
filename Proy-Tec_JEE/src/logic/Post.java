@@ -1,6 +1,7 @@
 package logic;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.Session;
 
@@ -8,7 +9,7 @@ import dbm.HibernateUtil;
 import model.Vehiculo;
 
 public class Post {
-	public static void addVehiculo() {
+	public static void addVehiculo(HttpServletRequest request) {
 		Vehiculo v = new Vehiculo();
 		v.setMarcaVeh("Fiat");
 		v.setModeloVeh("Panda");
