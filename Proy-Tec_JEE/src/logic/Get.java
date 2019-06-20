@@ -12,8 +12,12 @@ public class Get {
 
 		Session session = HibernateUtil.getSession();
 		Vehiculo v = session.get(Vehiculo.class, ind);
+		try {
 		session.close();
 
 		System.out.println("Vehículo recuperado con éxito: " + v);
+		} catch (Exception e) {
+			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+		}
 	}
 }
