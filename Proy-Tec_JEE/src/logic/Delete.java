@@ -21,7 +21,6 @@ public class Delete {
 		session.getTransaction().commit();
 
 		session.close();
-
 		System.out.println("Vehiculo eliminado con éxito: " + v);
 
 	}
