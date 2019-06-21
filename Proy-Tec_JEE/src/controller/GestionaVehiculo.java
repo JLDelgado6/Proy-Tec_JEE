@@ -28,7 +28,7 @@ public class GestionaVehiculo extends HttpServlet {
 				response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 			}
 		} else {
-			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 		}
 	}
 
@@ -40,7 +40,7 @@ public class GestionaVehiculo extends HttpServlet {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			}
 		} else {
-			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 		}
 		
 	}
@@ -55,7 +55,7 @@ public class GestionaVehiculo extends HttpServlet {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 		}
 		} else {
-			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 		}
 	}
 
@@ -67,7 +67,7 @@ public class GestionaVehiculo extends HttpServlet {
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 		}
 		} else {
-			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 		}
 	}
 
