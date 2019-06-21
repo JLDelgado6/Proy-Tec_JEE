@@ -21,9 +21,9 @@ public class GestionaVehiculo extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (logic.ChkApikey.isApiKeyGET(request.getParameter("APIKEY"))) {
+		if (logic.ChkApikey.isApiKeyGET(request.getParameter("APIKEY")) || logic.ChkApikey.isApiKeyALL(request.getParameter("APIKEY"))) {
 			try {
-				response.getWriter().append(Get.getVehiculo(request).toString());
+				response.getWriter().append(Get.getVehiculo(request));
 			} catch (IndexOutOfBoundsException e) {
 				response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 			}
@@ -33,14 +33,20 @@ public class GestionaVehiculo extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if (logic.ChkApikey.isApiKeyALL(request.getParameter("APIKEY"))) {
 		try {
 			Post.addVehiculo(request);
 		} catch (Exception precNeg) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			}
+		} else {
+			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
 		}
+		
 	}
 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if (logic.ChkApikey.isApiKeyALL(request.getParameter("APIKEY"))) {
 		try {
 			Put.edtVehiculo(request);
 		} catch (IndexOutOfBoundsException e1) {
@@ -48,13 +54,20 @@ public class GestionaVehiculo extends HttpServlet {
 		} catch (Exception precNeg) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 		}
+		} else {
+			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+		}
 	}
 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if (logic.ChkApikey.isApiKeyALL(request.getParameter("APIKEY"))) {
 		try {
 			Delete.delVehiculo(request);
 		} catch (IndexOutOfBoundsException e1) {
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+		}
+		} else {
+			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
 		}
 	}
 
