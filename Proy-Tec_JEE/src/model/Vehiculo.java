@@ -13,16 +13,16 @@ public class Vehiculo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
+	@Column(name="IdVehiculo")
 	private Long idVeh;
 	
-	@Column
+	@Column(name="Marca")
 	private String marcaVeh ="";
 	
-	@Column
+	@Column(name="Modelo")
 	private String modeloVeh ="";
 	
-	@Column
+	@Column(name="Precio")
 	private Integer precioVeh =0;
 	
 	
