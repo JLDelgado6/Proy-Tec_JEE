@@ -8,8 +8,9 @@ import org.hibernate.Session;
 import dbm.HibernateUtil;
 import model.Vehiculo;
 
+@SuppressWarnings("unused")
 public class Post {
-	public static void addVehiculo(HttpServletRequest request) {
+	public static void addVehiculo(HttpServletRequest request) throws Exception {
 		Vehiculo v = new Vehiculo();
 		v.setMarcaVeh("Fiat");
 		v.setModeloVeh("Panda");
@@ -25,7 +26,7 @@ public class Post {
 
 			System.out.println("Vehiculo insertado con éxito: " + v);
 		} else {
-			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			throw new Exception("Precio no válido");
 		}
 	}
 }

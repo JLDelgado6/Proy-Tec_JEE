@@ -8,22 +8,21 @@ import org.hibernate.Session;
 import dbm.HibernateUtil;
 import model.Vehiculo;
 
+@SuppressWarnings("unused")
 public class Delete {
-	public static void delVehiculo(HttpServletRequest request) {
+	public static void delVehiculo(HttpServletRequest request) throws IndexOutOfBoundsException {
 		Long ind = 1L;
 
 		Session session = HibernateUtil.getSession();
 		Vehiculo v = session.get(Vehiculo.class, ind);
-		try {
-			session.beginTransaction();
-			session.delete(v);
-			session.getTransaction().commit();
 
-			session.close();
+		session.beginTransaction();
+		session.delete(v);
+		session.getTransaction().commit();
 
-			System.out.println("Vehiculo eliminado con éxito: " + v);
-		} catch (Exception e) {
-			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-		}
+		session.close();
+
+		System.out.println("Vehiculo eliminado con éxito: " + v);
+
 	}
 }

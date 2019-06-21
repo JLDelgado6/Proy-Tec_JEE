@@ -12,30 +12,50 @@ import logic.Get;
 import logic.Post;
 import logic.Put;
 
-
-
 @WebServlet("/GestionaVehiculo")
 public class GestionaVehiculo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-   
-    public GestionaVehiculo() {
-        super();
-    }
+
+	public GestionaVehiculo() {
+		super();
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append(Get.getVehiculo(request).toString());
+		if (logic.ChkApikey.isApiKeyGET(request.getParameter("APIKEY"))) {
+			try {
+				response.getWriter().append(Get.getVehiculo(request).toString());
+			} catch (IndexOutOfBoundsException e) {
+				response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+			}
+		} else {
+			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Post.addVehiculo(request);
+		try {
+			Post.addVehiculo(request);
+		} catch (Exception precNeg) {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+		}
 	}
 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Put.edtVehiculo(request);
+		try {
+			Put.edtVehiculo(request);
+		} catch (IndexOutOfBoundsException e1) {
+			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+		} catch (Exception precNeg) {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+		}
 	}
 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Delete.delVehiculo(request);
+		try {
+			Delete.delVehiculo(request);
+		} catch (IndexOutOfBoundsException e1) {
+			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+		}
 	}
 
 }
