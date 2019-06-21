@@ -25,7 +25,6 @@ public class Put {
 				session.getTransaction().commit();
 
 				session.close();
-
 				System.out.println("Vehiculo editado con éxito: " + v);
 			} else {
 				throw new Exception("Precio no válido");
