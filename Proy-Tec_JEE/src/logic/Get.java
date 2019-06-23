@@ -12,9 +12,13 @@ public class Get {
 	public static String getVehiculo(HttpServletRequest request) {
 		Long ind = 1L;
 		String resultado="";
+		
+		System.out.println("Procesando la petición GET");
+		
 		Session session = HibernateUtil.getSession();
 		Vehiculo v = session.get(Vehiculo.class, ind);
 		session.close();
+		
 		System.out.println("Vehículo recuperado con éxito: " + v);
 		resultado = v.toString();
 		return resultado;
