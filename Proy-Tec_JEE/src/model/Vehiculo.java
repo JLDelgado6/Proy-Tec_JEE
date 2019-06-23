@@ -8,54 +8,71 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Coche")
+@Table
 public class Vehiculo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="IdVehiculo")
-	private Long idVeh;
+	@Column
+	private Long idVehiculo;
 	
-	@Column(name="Marca")
-	private String marcaVeh ="";
+	@Column
+	private String marca;
 	
-	@Column(name="Modelo")
-	private String modeloVeh ="";
+	@Column
+	private String modelo;
 	
-	@Column(name="Precio")
-	private Integer precioVeh =0;
-	
+	@Column
+	private Integer precio;
 	
 	public Vehiculo() {
+		super();
 	}
-	public Long getIdVeh() {
-		return idVeh;
+
+	public Vehiculo(String marca, String modelo, Integer precio) {
+		super();
+		this.marca = marca;
+		this.modelo = modelo;
+		this.precio = precio;
 	}
-	public void setIdVeh(Long idVeh) {
-		this.idVeh = idVeh;
+	
+
+	public Long getIdVehiculo() {
+		return idVehiculo;
 	}
-	public String getMarcaVeh() {
-		return marcaVeh;
+
+	public void setIdVehiculo(Long idVehiculo) {
+		this.idVehiculo = idVehiculo;
 	}
-	public void setMarcaVeh(String marcaVeh) {
-		this.marcaVeh = marcaVeh;
+
+	public String getMarca() {
+		return marca;
 	}
-	public String getModeloVeh() {
-		return modeloVeh;
+
+	public void setMarca(String marca) {
+		this.marca = marca;
 	}
-	public void setModeloVeh(String modeloVeh) {
-		this.modeloVeh = modeloVeh;
+
+	public String getModelo() {
+		return modelo;
 	}
-	public Integer getPrecioVeh() {
-		return precioVeh;
+
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
 	}
-	public void setPrecioVeh(Integer precioVeh) {
-		this.precioVeh = precioVeh;
+
+	public Integer getPrecio() {
+		return precio;
 	}
+
+	public void setPrecio(Integer precio) {
+		this.precio = precio;
+	}
+
 	@Override
 	public String toString() {
-		return "Vehiculo [idVeh=" + idVeh + ", marcaVeh=" + marcaVeh + ", modeloVeh=" + modeloVeh + ", precioVeh="
-				+ precioVeh + "]";
+		return "Vehiculo [idVehiculo=" + idVehiculo + ", marca=" + marca + ", modelo=" + modelo + ", precio=" + precio
+				+ "]";
 	}
 
 	

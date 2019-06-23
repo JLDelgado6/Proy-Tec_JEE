@@ -1,32 +1,38 @@
 package logic;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
+
+//import java.util.Map;
 
 import org.hibernate.Session;
 
 import dbm.HibernateUtil;
 import model.Vehiculo;
 
-@SuppressWarnings("unused")
 public class Post {
-	public static void addVehiculo(HttpServletRequest request) throws Exception {
-		Vehiculo v = new Vehiculo();
-		v.setMarcaVeh("Fiat");
-		v.setModeloVeh("Panda");
-		v.setPrecioVeh(7600);
+	public static void addVehiculo(HttpServletRequest request) {
+				
+		System.out.println("Procesando la petición POST");
+		
+		String marca = (request.getParameter("marca") != null)?request.getParameter("marca"):null;
+		String modelo = (request.getParameter("modelo") != null)?request.getParameter("modelo"):null;
+		Integer precio = (Integer.parseInt(request.getParameter("precio")) >= 0)?Integer.parseInt(request.getParameter("precio")):0;
+			
+		Vehiculo v = new Vehiculo(marca, modelo, precio);
+		
+		Session vSession = HibernateUtil.getSession();		
+    	vSession.beginTransaction();
+    	vSession.save(v);
+    	vSession.getTransaction().commit();
+    	vSession.close();		
+    	
+    	System.out.println("Añadiendo el " + v);
+		
+	}	
+}	
 
-		Session session = HibernateUtil.getSession();
-		if (v.getPrecioVeh() >= 0) {
-			session.beginTransaction();
-			session.save(v);
-			session.getTransaction().commit();
 
-			session.close();
 
-			System.out.println("Vehiculo insertado con éxito: " + v);
-		} else {
-			throw new Exception("Precio no válido");
-		}
-	}
-}
+
+		
+

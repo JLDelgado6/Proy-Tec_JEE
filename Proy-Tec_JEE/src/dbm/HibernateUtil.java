@@ -5,18 +5,19 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import model.Vehiculo;
 
-
 public class HibernateUtil {
 
 	private static SessionFactory sessionFactory;
 	private static Session session;
 
 	private static void buildSessionFactory() {
+		
 		try {
 			sessionFactory = new Configuration()
-					.addAnnotatedClass(Vehiculo.class)
-					.configure()
-					.buildSessionFactory();
+			.addAnnotatedClass(Vehiculo.class)
+            .configure()
+            .buildSessionFactory();
+
 		} catch (Exception e) {
 			System.out.println("Error al conectar con la BD. " + e.getMessage());
 		}
@@ -32,8 +33,7 @@ public class HibernateUtil {
 			return session;
 		} else {
 			session = getSessionFactory().openSession();
-			return session;
-		}
+			return session;		}
 	}
 
 }
