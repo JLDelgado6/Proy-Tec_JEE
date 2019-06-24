@@ -2,7 +2,6 @@ package logic;
 
 import javax.servlet.http.HttpServletRequest;
 
-//import java.util.Map;
 
 import org.hibernate.Session;
 
@@ -16,8 +15,10 @@ public class Post {
 		
 		String marca = (request.getParameter("marca") != null)?request.getParameter("marca"):null;
 		String modelo = (request.getParameter("modelo") != null)?request.getParameter("modelo"):null;
-		Integer precio = (Integer.parseInt(request.getParameter("precio")) >= 0)?Integer.parseInt(request.getParameter("precio")):0;
-			
+		Integer precio = (Integer.parseInt(request.getParameter("precio")) >= 0)
+				         ?Integer.parseInt(request.getParameter("precio")):0;
+	    
+	     
 		Vehiculo v = new Vehiculo(marca, modelo, precio);
 		
 		Session vSession = HibernateUtil.getSession();		

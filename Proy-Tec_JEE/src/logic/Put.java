@@ -1,6 +1,10 @@
 package logic;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.Session;
 
@@ -8,7 +12,7 @@ import dbm.HibernateUtil;
 import model.Vehiculo;
 
 public class Put {
-	public static void edtVehiculo(HttpServletRequest request) {
+	public static void edtVehiculo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		System.out.println("Procesando la petición PUT");
 		
@@ -31,9 +35,9 @@ public class Put {
 			v.setModelo(modelo);
 		}
 
-		if (precio != null) {
+		if (precio >= 0) {
 			v.setPrecio(precio);
-		}
+		} 
 		
 		vSession.update(v);
 		vSession.getTransaction().commit();
