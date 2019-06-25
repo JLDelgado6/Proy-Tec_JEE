@@ -76,7 +76,7 @@ public class GestionaVehiculo extends HttpServlet {
 					    response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 				    }
 					
-			    } catch (IllegalArgumentException e) {
+			    } catch (IndexOutOfBoundsException e) {
 			    	
 			    	System.out.println("Se ha producido un error 404");
 			    	response.setStatus(HttpServletResponse.SC_NOT_FOUND);
@@ -88,7 +88,7 @@ public class GestionaVehiculo extends HttpServlet {
 				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 			}
 			
-		} catch (Exception e) {
+		} catch (IllegalArgumentException e1) {
 			
 			System.out.println("Se ha producido un error 503");
 			response.setStatus(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
@@ -115,7 +115,7 @@ public class GestionaVehiculo extends HttpServlet {
 				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 			}
 			
-		} catch (IllegalArgumentException e) {
+		} catch (IllegalArgumentException e1) {
 			
 			System.out.println("Se ha producido un error 503");
 			response.setStatus(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
