@@ -19,7 +19,8 @@ public class Put {
 		Long index = Long.parseLong(request.getParameter("idVehiculo"));
 		String marca = request.getParameter("marca");
 		String modelo = request.getParameter("modelo");
-		Integer precio = Integer.parseInt(request.getParameter("precio"));
+		@SuppressWarnings("unused")
+		Integer precio /*= Integer.parseInt(request.getParameter("precio"))*/;
 		
 		Session vSession = HibernateUtil.getSession();
 		Vehiculo v = vSession.get(Vehiculo.class, index);
@@ -35,8 +36,10 @@ public class Put {
 			v.setModelo(modelo);
 		}
 
-		if (precio != null) {
-			v.setPrecio(precio);
+		if (request.getParameter("precio")=="") {
+			v.setPrecio(0);
+		}else {
+			v.setPrecio(Integer.parseInt(request.getParameter("precio")));
 		} 
 		
 		vSession.update(v);
