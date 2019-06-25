@@ -25,10 +25,10 @@ public class Get {
 		String modelo = request.getParameter("modelo");
 		Integer precio = (request.getParameter("precio")!= null)
 				         ?Integer.parseInt(request.getParameter("precio")):null;
-		Integer from = (request.getParameter("from") != null)
-						 ?Integer.parseInt(request.getParameter("from")):null;
-	    Integer to = (request.getParameter("to")!= null)
-					 ?Integer.parseInt(request.getParameter("to")):null;
+		Long from = (request.getParameter("from") != null)
+						 ?Long.parseLong(request.getParameter("from")):null;
+	    Long to = (request.getParameter("to")!= null)
+					 ?Long.parseLong(request.getParameter("to")):null;
 		String sort = request.getParameter("sort"); 
 							
 									 
@@ -50,15 +50,15 @@ public class Get {
 
 			if(precio != null) {queryString += " and v.precio =:precio";}
 
-            if(from != null) {queryString += " and v.idVehiculo >=:from";}
+            if(from != null) {queryString += " and v.idVehiculo >= :from";}
 
-			if(to != null) {queryString += " and v.idVehiculo <=:to";}
+			if(to != null) {queryString += " and v.idVehiculo <= :to";}
 			
-			if(sort != null) {queryString += " ORDER BY "+ sort +" ASC";}
+			if(sort != null) {queryString += " ORDER BY :sort";}
 			
 		}
 				 
-							 
+		System.out.println(queryString);					 
 		Session vSession = HibernateUtil.getSession();
 		Query query = vSession.createQuery(queryString);
 		
