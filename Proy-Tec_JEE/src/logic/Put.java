@@ -12,15 +12,13 @@ import dbm.HibernateUtil;
 import model.Vehiculo;
 
 public class Put {
-	public static void edtVehiculo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public static void edtVehiculo(HttpServletRequest request, HttpServletResponse response)  {
 		
 		System.out.println("Procesando la petición PUT");
 		
 		Long index = Long.parseLong(request.getParameter("idVehiculo"));
 		String marca = request.getParameter("marca");
 		String modelo = request.getParameter("modelo");
-		@SuppressWarnings("unused")
-		Integer precio /*= Integer.parseInt(request.getParameter("precio"))*/;
 		
 		Session vSession = HibernateUtil.getSession();
 		Vehiculo v = vSession.get(Vehiculo.class, index);
