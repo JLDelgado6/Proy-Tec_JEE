@@ -39,7 +39,7 @@ public class GestionaVehiculo extends HttpServlet {
 		
 		try {
 			if(ChkApikey.isApiKeyALL(request.getParameter("apiKey"))) {
-				if (Integer.parseInt(request.getParameter("precio")) < 0) {
+				if (Integer.parseInt(request.getParameter("precio")) > 0) {
 					
 					Post.addVehiculo(request);
 					
