@@ -15,8 +15,14 @@ public class Post {
 		
 		String marca = (request.getParameter("marca") != null)?request.getParameter("marca"):null;
 		String modelo = (request.getParameter("modelo") != null)?request.getParameter("modelo"):null;
-		Integer precio = (request.getParameter("precio") != null) ? Integer.parseInt(request.getParameter("precio")):0;
+		Integer precio /*= (request.getParameter("precio") != null) 
+				? Integer.parseInt(request.getParameter("precio")):0*/;
 	    
+		if(request.getParameter("precio")=="") {
+			precio = 0;
+		} else {
+			precio = Integer.parseInt(request.getParameter("precio"));
+		}
 	     
 		Vehiculo v = new Vehiculo(marca, modelo, precio);
 		
