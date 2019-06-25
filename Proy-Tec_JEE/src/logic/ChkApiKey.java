@@ -1,6 +1,6 @@
 package logic;
 
-public class ChkApikey {
+public class ChkApiKey {
 	private static String ApiKeyGET = "123ABC";
 	private static String ApiKeyALL = "ABC123";
 	
