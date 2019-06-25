@@ -44,11 +44,11 @@ public class Get {
 
 			queryString = "SELECT v FROM Vehiculo v WHERE 1=1";
 			
-			if(marca != null) {queryString += " and v.marca =:marca";}
+			if(marca != null) {queryString += " and v.marca = :marca";}
 
-			if(modelo != null) {queryString += " and v.modelo =:modelo";}
+			if(modelo != null) {queryString += " and v.modelo = :modelo";}
 
-			if(precio != null) {queryString += " and v.precio =:precio";}
+			if(precio != null) {queryString += " and v.precio = :precio";}
 
             if(from != null) {queryString += " and v.idVehiculo >= :from";}
 
