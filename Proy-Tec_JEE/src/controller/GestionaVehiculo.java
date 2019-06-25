@@ -65,7 +65,7 @@ public class GestionaVehiculo extends HttpServlet {
 		
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		try {
+	
 			if(ChkApikey.isApiKeyALL(request.getParameter("apiKey"))) {
 				try {
 					if (Integer.parseInt(request.getParameter("precio")) > 0) {
@@ -80,7 +80,11 @@ public class GestionaVehiculo extends HttpServlet {
 			    	
 			    	System.out.println("Se ha producido un error 404");
 			    	response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-			    }
+			    } catch (IllegalArgumentException e1) {
+					
+					System.out.println("Se ha producido un error 503");
+					response.setStatus(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
+				}
 				
 			} else {
 				
@@ -88,17 +92,12 @@ public class GestionaVehiculo extends HttpServlet {
 				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 			}
 			
-		} catch (IllegalArgumentException e1) {
-			
-			System.out.println("Se ha producido un error 503");
-			response.setStatus(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
-		}
+		
 	}
 	    
 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
-		try {
 			if(ChkApikey.isApiKeyALL(request.getParameter("apiKey"))) {
 				try {
 					
@@ -108,18 +107,21 @@ public class GestionaVehiculo extends HttpServlet {
 				
 				    System.out.println("Se ha producido un error 404");
 				    response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-			    }
+			   
+				} catch (IllegalArgumentException e1) {
+					
+					System.out.println("Se ha producido un error 503");
+					response.setStatus(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
+				
+				}
+				
 			} else {
 				
 				System.out.println("Se ha producido un error 401");
 				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 			}
 			
-		} catch (IllegalArgumentException e1) {
-			
-			System.out.println("Se ha producido un error 503");
-			response.setStatus(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
-		}
+		
 	
 	}
 }
