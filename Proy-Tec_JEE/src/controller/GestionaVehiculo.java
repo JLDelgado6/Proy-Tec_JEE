@@ -12,7 +12,7 @@ import logic.Delete;
 import logic.Get;
 import logic.Post;
 import logic.Put;
-import logic.ChkApiKey;
+import logic.ChkApikey;
 
 
 @WebServlet("/GestionaVehiculo")
@@ -24,7 +24,7 @@ public class GestionaVehiculo extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(ChkApiKey.isApiKeyGET(request.getParameter("apiKey")) || ChkApiKey.isApiKeyALL(request.getParameter("apiKey"))) {
+		if(ChkApikey.isApiKeyGET(request.getParameter("apiKey")) || ChkApikey.isApiKeyALL(request.getParameter("apiKey"))) {
 			try {
 				response.getWriter().append(Get.getVehiculo(request));
 			} catch (IndexOutOfBoundsException e) {
@@ -38,7 +38,7 @@ public class GestionaVehiculo extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
-			if(ChkApiKey.isApiKeyALL(request.getParameter("apiKey"))) {
+			if(ChkApikey.isApiKeyALL(request.getParameter("apiKey"))) {
 				if (Integer.parseInt(request.getParameter("precio")) < 0) {
 					
 					Post.addVehiculo(request);
@@ -64,7 +64,7 @@ public class GestionaVehiculo extends HttpServlet {
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
-			if(ChkApiKey.isApiKeyALL(request.getParameter("apiKey"))) {
+			if(ChkApikey.isApiKeyALL(request.getParameter("apiKey"))) {
 				try {
 					
 					Put.edtVehiculo(request,response);
@@ -93,7 +93,7 @@ public class GestionaVehiculo extends HttpServlet {
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
 		try {
-			if(ChkApiKey.isApiKeyALL(request.getParameter("apiKey"))) {
+			if(ChkApikey.isApiKeyALL(request.getParameter("apiKey"))) {
 				try {
 					
 					Delete.delVehiculo(request);
