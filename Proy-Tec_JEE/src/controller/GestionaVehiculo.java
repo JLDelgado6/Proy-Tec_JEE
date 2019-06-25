@@ -27,11 +27,13 @@ public class GestionaVehiculo extends HttpServlet {
 		if(ChkApikey.isApiKeyGET(request.getParameter("apiKey")) || ChkApikey.isApiKeyALL(request.getParameter("apiKey"))) {
 			try {
 				response.getWriter().append(Get.getVehiculo(request));
-			} catch (IndexOutOfBoundsException e) {
+			} catch (IllegalArgumentException e) {
+				System.out.println("Se ha producido un error 404");
 				response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 			}
 		} else {
-				response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+				System.out.println("Se ha producido un error 401");
+				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 		}
 	} 
 
