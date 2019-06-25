@@ -66,9 +66,13 @@ public class GestionaVehiculo extends HttpServlet {
 		try {
 			if(ChkApikey.isApiKeyALL(request.getParameter("apiKey"))) {
 				try {
-					
-					Put.edtVehiculo(request,response);
-					
+					if (Integer.parseInt(request.getParameter("precio")) > 0) {
+						Put.edtVehiculo(request,response);
+					} else {
+						
+					    System.out.println("Se ha producido un error 400");
+					    response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				    }
 					
 			    } catch (IllegalArgumentException e) {
 			    	

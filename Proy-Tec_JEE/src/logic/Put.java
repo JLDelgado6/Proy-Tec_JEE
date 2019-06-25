@@ -35,7 +35,7 @@ public class Put {
 			v.setModelo(modelo);
 		}
 
-		if (precio >= 0) {
+		if (precio != null) {
 			v.setPrecio(precio);
 		} 
 		
